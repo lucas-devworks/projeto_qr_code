@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+}
+
+.container {
+    height: 241px;
+    max-width: 410px;
+    padding: 18px 24px;
+    background-color: white;
+    border-radius: 6px;
+    transition: height 0.5s ease;
+}
+
+.container.active {
+    height: 530px;
+}
+
+.titulo h1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 28px;
+}
+.titulo p {
+    color: #474747;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.conteudo {
+    padding: 20px 0 25px;
+}
+.conteudo :where(input, button) {
+    width: 100%;
+    height: 55px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+}
+.conteudo input {
+    padding: 0 17px;
+    font-size: 18px;
+    border: 1px solid #999;
+}
+.conteudo button {
+    color: #fff;
+    background-color: rgb(122, 127, 201);
+    font-size: 17px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.conteudo button:hover {
+    background-color: rgb(80, 82, 134);
+    transition: all 0.5s ease;
+}
+
+.area-qr-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.area-qr-code img {
+    width: 220px;
+    height: auto;
+}
+
+.container.active .area-qr-code {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.5s;
+}
