@@ -10,7 +10,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+    background: #9a99d6;
 }
 
 .container {
@@ -20,6 +20,7 @@ body {
     background-color: white;
     border-radius: 6px;
     transition: height 0.5s ease;
+    box-shadow: 0px 0px 25px 5px #505286;
 }
 
 .container.active {
@@ -83,4 +84,27 @@ body {
     opacity: 1;
     pointer-events: auto;
     transition: opacity 0.5s;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
+
+.dow {
+    width: 30%;
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    background-color: rgb(112, 194, 112);
+    padding: 6px 6px;
+    border-radius: 6px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+.dow:hover {
+    background-color: rgb(43, 156, 43);
+}
+
