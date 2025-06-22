@@ -1,37 +1,53 @@
-const container = document.querySelector('.container'),
-qrInput = container.querySelector('.conteudo input'),
-generateBtn = container.querySelector('.conteudo button'),
-qrImg = container.querySelector('.area-qr-code .imagem');
-qrdow = container.querySelector('.area-qr-code .dow');
+const qrInput = document.getElementById('qr-input');
+const generateBtn = document.getElementById('generate-btn');
+const canvas = document.getElementById('qr-canvas');
+const ctx = canvas.getContext('2d');
+const logoInput = document.getElementById('logo-upload');
+const downloadLink = document.getElementById('download-link');
+const label_do_file = document.getElementsByClassName('custom-file-upload')[0];
 
-generateBtn.addEventListener('click', () => {
-    let qrValue = qrInput.value;
-    if (!qrValue) {
-        alert("Insira uma URL ou texto para gerar o qr code");
-        return;
-    }
-    generateBtn.innerText = 'Gerando um Qr code...';
-    let qrCodeURL = `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${qrValue}`;
+let logoImage = null;
 
-    // Atualiza a imagem
-    qrImg.src = qrCodeURL;
-    qrImg.addEventListener('load', () => {
-        generateBtn.innerText = 'Gerar QR CODE';
-        container.classList.add('active');
-
-        // Cria um link de download pelo Blob
-        fetch(qrCodeURL)
-            .then(response => response.blob())
-            .then(blob => {
-                let blobURL = URL.createObjectURL(blob);
-                qrdow.href = blobURL;
-                qrdow.download = "qrcode.png";
-            });
-    });
+logoInput.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      logoImage = new Image();
+      logoImage.src = evt.target.result;
+    };
+   
+    reader.readAsDataURL(file);
+      // se a imagem for carregada com sucesso, muda para verde e altera o texto para "imagem carregada!"
+    document.querySelector('.custom-file-upload').classList.add('carregado');
+    label_do_file.innerHTML = 'Imagem carregada!';
+    
+  }
 });
 
-qrInput.addEventListener('keyup', () => {
-    if(!qrInput.value) {
-        container.classList.remove('active');
-    };
+generateBtn.addEventListener('click', () => {
+  const text = qrInput.value;
+  if (!text) {
+    alert("Insira uma URL ou texto para gerar o QR Code");
+    return;
+  }
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  QRCode.toCanvas(canvas, text, { width: 300 }, function (error) {
+     document.querySelector('.container').classList.add('active');
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    if (logoImage && logoImage.complete) {
+      const size = 60;
+      const x = (canvas.width - size) / 2;
+      const y = (canvas.height - size) / 2;
+      ctx.drawImage(logoImage, x, y, size, size);
+    }
+
+    downloadLink.href = canvas.toDataURL();
+  });
 });

@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-    height: 241px;
+    height: 300px;
     max-width: 410px;
     padding: 18px 24px;
     background-color: white;
@@ -24,7 +24,7 @@ body {
 }
 
 .container.active {
-    height: 530px;
+    height: auto;
 }
 
 .titulo h1 {
@@ -40,7 +40,7 @@ body {
 }
 
 .conteudo {
-    padding: 20px 0 25px;
+    padding: 10px 10px;
 }
 .conteudo :where(input, button) {
     width: 100%;
@@ -108,3 +108,22 @@ body {
     background-color: rgb(43, 156, 43);
 }
 
+/* carrega imagem */
+.custom-file-upload {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #7a7fc9;
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+}
+.custom-file-upload:hover {
+  background-color: #505286;
+}
+
+.custom-file-upload.carregado {
+    background-color: green;
+}

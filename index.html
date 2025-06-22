@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles.css">
     <title>Gerador de QR CODE</title>
 </head>
+
 <body>
 
     <section class="container">
@@ -13,13 +14,17 @@
             <h1>Gerador de QR CODE</h1>
             <p>Insira uma URL ou texto para gerar o qr code</p>
         </div>
+
         <div class="conteudo">
-            <input type="text" placeholder="Insira aqui"/>
-            <button>Gerar QR CODE</button>
+            <input type="text" placeholder="Insira aqui" id="qr-input"/>
+             <label for="logo-upload" class="custom-file-upload">Carregue sua imagem</label>
+             <input type="file" id="logo-upload" accept="image/*" style="display: none;">
+            <button id="generate-btn">Gerar QR CODE</button>
         </div>
+
         <div class="area-qr-code">
-            <img src="" alt="" class="imagem" />
-            <a href="" class="dow" download> Baixar
+             <canvas id="qr-canvas" width="300" height="300"></canvas>
+            <a href="" class="dow" id="download-link" download> Baixar
                 <svg class="w-6 h-6 text-gray-800 dark:text-white link" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
                 </svg>
@@ -28,6 +33,7 @@
     </section>
      
 </body>
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
  <script src="script.js"></script>
    
 </html>
